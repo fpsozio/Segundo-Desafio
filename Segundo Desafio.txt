@@ -1,0 +1,81 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+string ConcatERemove (string s, string t, int k)
+{
+    string charac;
+    int length;
+    int i;
+    int count;
+    int flag;
+    i = 0;
+    flag = 0;
+    count = 0;
+  
+    if (s.length() >= 1 && s.length() <= 100 && t.length() >= 1 && t.length() <= 100 && k >= 1 && k <= 100) 
+    {
+        if (s.length() >= t.length())
+        {
+            length = s.length();
+        }
+        else
+        {
+            length = t.length();
+        }
+    
+        while (i <= length)
+        {
+       
+            if (s[i] != t[i])
+            {
+             count++;
+             if (s[i] != '\0')
+             {
+                 flag++;
+             }
+            }
+        
+        i++;
+        }
+    
+        s.erase((length-count), count);
+        i = length-count;
+        
+        while (t[i] != '\0')
+        {
+            charac = t[i];
+            s.insert(i, charac);
+            i++;
+            flag++;
+        }
+   
+        if (k <= flag)
+        {
+        return "NÃO";
+        }
+        else
+        {
+         return "SIM";  
+        }
+    }
+    else
+    {
+        return "ERRO: As variáveis devem seguir o seguinte formato, 1 <= |s| <= 100, 1 <= |t| <= 100, 1 <= k <= 100";
+    }
+}
+
+int main()
+{
+    string name1;
+    string name2;
+    int ite;
+    
+    cout << "Insira o valor de s: ";
+    cin >> name1;
+    cout << "Insira o valor de t: ";
+    cin >> name2;
+    cout << "Insira o valor de k: ";
+    cin >> ite;
+    cout << ConcatERemove(name1,name2,ite);
+}
